@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<p>	<a href="/events">Events Dashboard</a><span>   </span>
+			<a href="/logout">Logout</a></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Edit Your Profile</h2>
+			<form action='/users/<%= @user.id %>' method='post'>
+				<input type="hidden" name="_method" value="patch">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+				<table>
+					<tbody>
+						<tr>
+							<td>First Name: </td>
+							<td><input type='text' name='user[first_name]' value="<%= @user.first_name %>"></td>
+						</tr>
+							<tr>
+							<td>Last Name: </td>
+							<td><input type='text' name='user[last_name]' value="<%= @user.last_name %>"></td>
+						</tr>
+						<tr>
+							<td>Email: </td>
+							<td><input type='text' name='user[email]' value="<%= @user.email %>"></td>
+						</tr>
+						<tr>
+							<td>Location: </td>
+							<td>
+								<input type='text' name='user[location_city]' value="<%= @user.location_city %>">
+								<select name='user[state]'>
+<%								@states.each do |state|
+									if state == @user.state
+%>									
+								<option selected ='<%= @user.state %>'><%= state %></option>
+									<% else %>
+											<option><%= state %></option>		
+<% 									end 
+								end
+%>	
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<input type='submit' value='Update Records'>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+

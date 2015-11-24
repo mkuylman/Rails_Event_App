@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Welcome!</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<h2>Register</h2>
+				<p><%= @success %></p>
+			<form action='/users' method='post'>
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+				<table>
+					<tbody>
+						<tr>
+							<td>First Name: </td>
+							<td><input type='text' name='user[first_name]'></td>
+						</tr>
+						<tr>
+							<td>Last Name: </td>
+							<td><input type='text' name='user[last_name]'></td>
+						</tr>
+						<tr>
+							<td>Email: </td>
+							<td><input type='text' name='user[email]'></td>
+						</tr>
+						<tr>
+							<td>Location: </td>
+							<td>
+								<input type='text' name='user[location_city]'>
+					
+								<select name='user[state]'>
+									<!-- loop through states array  -->
+<% 								@states.each do |state| 
+%>									<option><%= state %></option>		
+<% 								end
+%>	
+								</select>
+							</td>
+
+						</tr>
+						<tr>
+							<td>Password: </td>
+							<td><input type='password' name='user[password]'></td>
+						</tr>
+						<tr>
+							<td><p>*Password should be at least 8 characters</p></td>
+						</tr>
+						<tr>
+							<td>Password Confirmation: </td>
+							<td><input type='password' name='password_confirmation'></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type='submit' value='Register'>
+			</form>
+		</div>
+		<div class="col-xs-6">
+			<h2>Login</h2>
+			<form action='/sessions' method='post'>
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+				<table>
+					<tbody>
+						<tr>
+							<td>Email: </td>
+							<td><input type='text' name='user[email]'></td>
+						</tr>
+						<tr>
+							<td>Password: </td>
+							<td><input type='password' name='user[password]'></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type='submit' value='Login'>
+			</form>
+	</div>
+</div>

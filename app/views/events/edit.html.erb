@@ -1,0 +1,47 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<p>	<a href="/events">Events Dashboard</a><span>   </span>
+			<a href="/logout">Logout</a></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Edit Event</h2>
+			<form action='/events/<%= @event.id %>' method='post'>
+				<input type="hidden" name="_method" value="patch">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+				<table>
+					<tbody>
+						<tr>
+							<td>Name: </td>
+							<td><input type='text' name='event[name]' value="<%= @event.name %>"></td>
+						</tr>
+						<tr>
+							<td>Date: </td>
+							<td><input type='date' name='event[date]' value="<%= @event.date %>"></td>
+						</tr>
+						<tr>
+							<td>Location: </td>
+							<td>
+								<input type='text' name='event[location_city]' value="<%= @event.location_city %>">
+								<select name='event[state]'>
+<%								@states.each do |state|
+									if state == @event.state
+%>									
+								<option selected ='<%= @event.state %>'><%= state %></option>
+									<% else %>
+											<option><%= state %></option>		
+<% 									end 
+								end
+%>	
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<input type='submit' value='Update Event'>
+			</form>
+		</div>
+	</div>
+</div>
